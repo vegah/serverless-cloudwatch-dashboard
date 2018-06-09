@@ -1,5 +1,5 @@
 # serverless-cloudwatch-dashboard
-A serverless plugin for generating dashboards in AWS through the serverless framework.
+A serverless plugin for generating a cloudwatch dashboard with widgets for the resources defined in the serverless.yml file.  
 
 # Install
 NPM package coming soon.
