@@ -2,7 +2,7 @@
 A serverless plugin for generating a cloudwatch dashboard with widgets for the resources defined in the serverless.yml file.  
 
 # Install
-NPM package coming soon.
+Npm package coming soon.
 
 # Usage
 ## serverless.yml
@@ -38,7 +38,7 @@ The functions that are created by serverless is fully supported.  The following 
   
 Defaults:
   * Invocations
-  * Error
+  * Errors
   * Duration
   
 To view documentation on the metrics, please see the official AWS documentation here:  
@@ -182,5 +182,7 @@ resources:
  * You must specify table name or bucket name when defining s3/dynamodb resources.
  * It is not possible to have different metrics for different resources of the same type.
  * A lot of resources is not supported.  
+ * It's impossible to customize the layout of the dashboard.
+Some of these issues may be resolved in the future.  
 
-If you find an issue, please add it to the issues in this repo.  
+If you find a bug, please add it to the issues on github.    

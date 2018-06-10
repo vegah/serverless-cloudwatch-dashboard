@@ -23,16 +23,19 @@ class S3 {
     }
     
     validateConfig(configItem) {
-        if (validConfigs.indexOf(configItem)==0)
+        if (this.validConfigs.indexOf(configItem)>-1)
             return true;
         else
-            throw new this.serverless.classes.Error(`Error: ${configItem} is not a valid metric for s3`);
+            throw new this.scd.serverless.classes.Error(`Error: ${configItem} is not a valid metric for s3`);
     }
 
     createWidget(name,resource) {
+        if (!resource.Properties || !resource.Properties.BucketName)
+            throw new this.scd.serverless.classes.Error(`Error: The serverless-cloudwatch-dashboard plugin currently requires BucketName to be specified. For S3 bucket ${name} this is undefined.`)
         this.scd.log("Creating widgets for "+name+" "+resource.Properties.BucketName);
         var widgets = [];
         this.metric_config.forEach(metric=>{
+            this.validateConfig(metric);
             widgets.push({
                 shouldBeDelimited: true,
                 value: JSON.stringify({

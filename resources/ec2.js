@@ -27,16 +27,17 @@ class Ec2 {
     }
     
     validateConfig(configItem) {
-        if (validConfigs.indexOf(configItem)==0)
+        if (this.validConfigs.indexOf(configItem)>-1)
             return true;
         else
-            throw new this.serverless.classes.Error(`Error: ${configItem} is not a valid metric for ec2`);
+            throw new this.scd.serverless.classes.Error(`Error: ${configItem} is not a valid metric for ec2`);
     }
 
     createWidget(name,resource) {
         this.scd.log(`Creating widgets for ${name}`);
         var widgets = [];
         this.metric_config.forEach(metric=>{
+            this.validateConfig(metric);
             var widget = JSON.stringify({
                 "type": "metric",
                 "properties": {

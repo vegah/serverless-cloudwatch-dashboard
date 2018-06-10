@@ -8,6 +8,9 @@ class ServerlessCloudwatchDashboardPlugin {
     constructor(serverless, options) {
       this.serverless = serverless;
       this.options = options;
+
+      this.serverless.getProvider('aws');
+
       this.resources = {
         lambda: new Lambda(this,this.getConfig("lambda")||{}),
         ec2: new Ec2(this,this.getConfig("ec2")||{}),

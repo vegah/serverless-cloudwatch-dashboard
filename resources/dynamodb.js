@@ -21,16 +21,19 @@ class DynamoDb {
     }
     
     validateConfig(configItem) {
-        if (validConfigs.indexOf(configItem)==0)
+        if (this.validConfigs.indexOf(configItem)>-1)
             return true;
         else
-            throw new this.serverless.classes.Error(`Error: ${configItem} is not a valid metric for dynamodb`);
+            throw new this.scd.serverless.classes.Error(`Error: ${configItem} is not a valid metric for dynamodb`);
     }
 
     createWidget(name,resource) {
+        if (!resource.Properties || !resource.Properties.TableName)
+            throw new this.scd.serverless.classes.Error(`Error: The serverless-cloudwatch-dashboard plugin currently requires TableName to be specified. For table ${name} this is undefined.`)
         this.scd.log("Creating widgets for "+name+" "+resource.Properties.TableName);
         var widgets = [];
         this.metric_config.forEach(metric=>{
+            this.validateConfig(metric)
             widgets.push({
                 shouldBeDelimited: true,
                 value: JSON.stringify({

@@ -1,7 +1,7 @@
 class Lambda {
     constructor(serverlesscloudwatchdashboard,config) {
         this.scd = serverlesscloudwatchdashboard;
-        this.metric_config = config.metrics || ["Invocations","Error","Duration"];
+        this.metric_config = config.metrics || ["Invocations","Errors","Duration"];
         this.validConfigs = [
             "Invocations",
             "Errors",
@@ -16,16 +16,17 @@ class Lambda {
     }
     
     validateConfig(configItem) {
-        if (validConfigs.indexOf(configItem)==0)
+        if (this.validConfigs.indexOf(configItem)>-1)
             return true;
         else
-            throw new this.serverless.classes.Error(`Error: ${configItem} is not a valid metric for lambda`);
+            throw new this.scd.serverless.classes.Error(`Error: ${configItem} is not a valid metric for lambda`);
     }
 
     createWidget(name,resource) {
         this.scd.log("Creating function widgets for "+name+" "+resource.Properties.FunctionName);
         var widgets = [];
         this.metric_config.forEach(metric=>{
+            this.validateConfig(metric);
             widgets.push({
                 shouldBeDelimited: true,
                 value: JSON.stringify({
