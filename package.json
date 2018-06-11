@@ -1,6 +1,6 @@
 {
-  "name": "serverless-cloudwatch-dashboard-plugin",
-  "version": "1.0.0",
+  "name": "serverless-cloudwatch-dashboard",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {

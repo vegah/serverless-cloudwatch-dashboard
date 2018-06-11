@@ -2,8 +2,9 @@
 A serverless plugin for generating a cloudwatch dashboard with widgets for the resources defined in the serverless.yml file.  
 
 # Install
-Npm package coming soon.
-
+```
+npm install serverless-cloudwatch-dashboard
+```
 # Usage
 ## serverless.yml
 In the serverless.yml file the plugin needs to be added.  
