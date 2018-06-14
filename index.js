@@ -41,7 +41,11 @@ class ServerlessCloudwatchDashboardPlugin {
     }
 
     getConfig(configItem) {
-        return this.serverless.service.custom["serverless-cloudwatch-dashboard"][configItem];
+        if (this.serverless.service.custom && this.serverless.service.custom["serverless-cloudwatch-dashboard"])
+            return this.serverless.service.custom["serverless-cloudwatch-dashboard"][configItem];
+        else
+            return {};
+
     }
 
     createWidgets(resources) {
