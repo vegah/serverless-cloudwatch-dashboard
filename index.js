@@ -76,7 +76,6 @@ class ServerlessCloudwatchDashboardPlugin {
     injectDashboard(args) {
         this.log("Setting up dashboards for "+this.getServiceName());
         var resources = this.serverless.service.provider.compiledCloudFormationTemplate.Resources;
-        this.log("Resources : "+Object.keys(resources).join(","));
         var dashboard = this.getDashboardTemplate();
         dashboard.Properties.DashboardBody["Fn::Join"][1].splice(
                 1,
